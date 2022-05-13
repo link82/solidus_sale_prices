@@ -31,6 +31,10 @@ module Spree
     validates :calculator, :price, presence: true
     accepts_nested_attributes_for :calculator
 
+    validates :value,
+              allow_nil: false,
+              numericality: { greater_than_or_equal_to: 0.0 }
+
     before_save :compute_calculated_price
 
     scope :ordered, -> { order(Arel.sql('start_at IS NOT NULL, start_at ASC')) }
