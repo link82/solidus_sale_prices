@@ -89,6 +89,8 @@ module Spree
     private
 
     def compute_calculated_price
+      return unless calculator
+
       self.calculated_price = calculator.compute self
     end
   end
